@@ -56,10 +56,10 @@ IBR.Freq = Fnom;
 
 
 %Local side transformer impedance
-Trf.Pnom       = 1e9; %VA
+Trf.Pnom       = 500e3; %VA
 Trf.Freq       = Fnom; %Hz
-Trf.Vprim      = 735e3; %V
-Trf.Vsecondary = 333e3; %V
+Trf.Vprim      = 11e3; %V
+Trf.Vsecondary = 415; %V
 Trf.R1         = 0.003;        % Total winding resistance (pu)
 Trf.L1         = 0.12;         % Total Leakage inductance (pu)
 Trf.Rm         = 1000; %pu
@@ -105,7 +105,7 @@ Fault.EndTime = 12.6; %Fault removal simulation time in s
 %Converter
 ConvPlt.Fc=Fnom*3.37;        % Carriers frequency (Hz)
 ConvPlt.Nb_PM =36;                      % Number of power module per arm
-ConvPlt.Vnom_dc = 640e3;                % DC nominal voltage (V)
+ConvPlt.Vnom_dc = 1100;                % DC nominal voltage (V)
 ConvPlt.C_PM= 1.758e-3; % Power module capacitor (F)
 ConvPlt.Larm_pu = 0.15; %pu
 ConvPlt.Rarm_pu = ConvPlt.Larm_pu/100; %pu
