@@ -70,27 +70,18 @@ Trf.Z0         = Trf.Z1; %ohm
 Trf.ZbaseSec  = Trf.Vsecondary^2/Trf.Pnom;
 
 %Transmission line parameters
-TL.Z0AngleCase = '$\angle Z_{L0}=75^\circ$';
 
-switch TL.Z0AngleCase
-    case '$\angle Z_{L0}=\angle Z_{L1}$'
-        TL.R1 = 0.01273; %ohm/km
-        TL.R0 = 3*TL.R1; %ohm/km
-        TL.L1 = 0.9337e-3; %H/km
-        TL.L0 = 3*TL.L1; %H/km
-    case '$\angle Z_{L0}=75^\circ$'
-        TL.R1 = 0.01273; %ohm/km
-        TL.R0 = 0.3864; %ohm/km
-        TL.L1 = 0.9337e-3; %H/km
-        TL.L0 = 4.126e-3; %H/km
-end
+TL.R1 = TransmissionLine.R; %ohm/km
+TL.R0 = 3*TransmissionLine.R; %ohm/km
+TL.L1 = TransmissionLine.L; %H/km
+TL.L0 = 3*TransmissionLine.L; %H/km
 
-TL.Length = 200; %km
+TL.Length = 2; %km
 TL.Freq = Fnom; %Hz
 TL.C1 = 12.74e-9; %F/km
 TL.C0 = 7.751e-9; %F/km
-TL.Z1 = TL.Length*(TL.R1 + 1i*(TL.L1*(2*pi*TL.Freq))); %ohm
-TL.Z0 = TL.Length*(TL.R0 + 1i*(TL.L0*(2*pi*TL.Freq))); %ohm 
+TL.Z1 = TL.R1 + 1i*(TL.L1*(2*pi*TL.Freq)); %ohm
+TL.Z0 = TL.R0 + 1i*(TL.L0*(2*pi*TL.Freq)); %ohm 
 TL.K0 = (TL.Z0-TL.Z1)/TL.Z1; %residual compensation factor
 
 %Fault
@@ -165,17 +156,17 @@ ConvCtrl.Preg.Limits = [ 1.2, 0.8 ] ;   % Output (Vdc_ref) Upper/Lower limits (p
 % Reactive power regulator (Qreg)
 ConvCtrl.Qreg.Kp= 0.5/3;                % Proportional gain
 ConvCtrl.Qreg.Ki= 1.0;                  % Integral gain
-ConvCtrl.Qreg.Limits = [ 1, -1]; % Output (Iq_ref) Upper/Lower limit (pu)
+ConvCtrl.Qreg.Limits = [ 1.1, -1.1]; % Output (Iq_ref) Upper/Lower limit (pu)
 
 % VDC regulator (VDCreg)
 ConvCtrl.VDCreg.Kp =4;                   % Proportional gain
 ConvCtrl.VDCreg.Ki=100;                 % Integral gain
-ConvCtrl.VDCreg.Limits= [ 2.0  -2.0];   % Output Idref [Upper Lower] limits (pu)
+ConvCtrl.VDCreg.Limits= [ 1.1  -1.1];   % Output Idref [Upper Lower] limits (pu)
 
 % Current regulator (Ireg)
 ConvCtrl.Ireg.Kp = 0.6/2;                  % Proportional gain
 ConvCtrl.Ireg.Ki = 6/2;                    % Integral gain
-ConvCtrl.Ireg.Limits = [ 2.0  -2.0];     % Output Vdq_conv [Upper Lower] limits (pu)
+ConvCtrl.Ireg.Limits = [ 1.1  -1.1];     % Output Vdq_conv [Upper Lower] limits (pu)
 
 % Feedforward coefficients:
 ConvCtrl.FF.L = gridInverter.L*2*pi*ConvCtrl.Freq*gridInverter.apparentPower*1e3/(gridInverter.lineRMSVoltage)^2;
