@@ -2,7 +2,7 @@
 tic
 testCondition.testCondition = 'Permanent three-phase fault'; 
 % Test Cases Parameters
-faultImpedanceArray = [0.005 1 5 50];%[0.05 0.1 0.25 0.4]; % Three phase fault impedance
+faultImpedanceArray = [0.005 0.05 0.5 5];%[0.05 0.1 0.25 0.4]; % Three phase fault impedance
 faultDistanceArray = [0.2 0.5 0.7];
 gridSCRArray = [1 2.5 4];
 %Run test cases2
@@ -24,7 +24,7 @@ for i = 1:length(Results_VaryingFaultResistance)
     PlotDistanceElement(TL,Results_VaryingFaultResistance(i),FigNumber)
 end
 figure(FigNumber)
-title('Distance Element With Varying Fault Resistance')
+title('Distance Element With Varying Fault Resistance - GFL')
 
 %plot figure for varying fault distance
 %Results_VaryingFaultDistance = TestCasesResults_GFL(1:4:12);
@@ -39,7 +39,7 @@ for i = 1:length(Results_VaryingFaultDistance)
     PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber)
 end
 figure(FigNumber)
-title('Distance Element With Varying Fault Distance')
+title('Distance Element With Varying Fault Distance - GFL')
 
 %plot figure for varying SCR
 %Results_VaryingSCR = TestCasesResults_GFL(1:12:36);
@@ -54,7 +54,7 @@ for i = 1:length(Results_VaryingSCR)
     PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber)
 end
 figure(FigNumber)
-title('Distance Element With Varying Grid SRC')
+title('Distance Element With Varying Grid SRC - GFL')
 
 %% Plot Results for GFM
 TestCasesResults_GFM = load('TestCasesResults_GFM.mat');
