@@ -11,8 +11,8 @@ function PlotDistanceElement(TL,Data,FigNumber)
     %Settings
     Reactive_Reach = 0+imag(TL.Z1*0.8)*1i; %Reactive Reach
     Resistive_Reach = 50; %Resistive reach
-    alpha_1_Left_Blinder = 120; %Left Blinder angle
-    alpha_2_Lower_Blinder = -20; %Lower Blinder angle
+    alpha_1_Left_Blinder = 115; %Left Blinder angle
+    alpha_2_Lower_Blinder = -2; %Lower Blinder angle
     
     Lower_Blinder = Resistive_Reach/cos(deg2rad(alpha_2_Lower_Blinder))*exp(1i*deg2rad(alpha_2_Lower_Blinder));
     Left_Blinder = abs(Reactive_Reach)/sin(deg2rad(alpha_1_Left_Blinder))*exp(1i*deg2rad(alpha_1_Left_Blinder));
