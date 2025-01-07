@@ -8,9 +8,11 @@ gridSCRArray = [1 2.5 4];
 %Run test cases2
 TestCaseResults = FaultAnalysisSimRun(faultImpedanceArray, faultDistanceArray, gridSCRArray, testCondition, Fault);
 toc
+
 %% Plot Results for GFL
 TestCasesResults_GFL = load('TestCasesResults_GFL.mat');
 TestCasesResults_GFL = TestCasesResults_GFL.TestCaseResults;
+shape = 'x';
 
 %plot figure for varying fault resistance
 %Results_VaryingFaultResistance = TestCasesResults_GFL(1:4);
@@ -21,7 +23,7 @@ Results_VaryingFaultResistance = FindTestCases(TestCasesResults_GFL, Rf, m, SCR)
 
 FigNumber = 100;
 for i = 1:length(Results_VaryingFaultResistance)
-    PlotDistanceElement(TL,Results_VaryingFaultResistance(i),FigNumber)
+    PlotDistanceElement(TL,Results_VaryingFaultResistance(i),FigNumber,shape)
 end
 figure(FigNumber)
 title('Distance Element With Varying Fault Resistance - GFL')
@@ -36,7 +38,7 @@ Results_VaryingFaultDistance = FindTestCases(TestCasesResults_GFL, Rf, m, SCR);
 
 FigNumber = 101;
 for i = 1:length(Results_VaryingFaultDistance)
-    PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber)
+    PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber,shape)
 end
 figure(FigNumber)
 title('Distance Element With Varying Fault Distance - GFL')
@@ -51,7 +53,7 @@ Results_VaryingSCR = FindTestCases(TestCasesResults_GFL, Rf, m, SCR);
 
 FigNumber = 102;
 for i = 1:length(Results_VaryingSCR)
-    PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber)
+    PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber,shape)
 end
 figure(FigNumber)
 title('Distance Element With Varying Grid SRC - GFL')
@@ -59,6 +61,7 @@ title('Distance Element With Varying Grid SRC - GFL')
 %% Plot Results for GFM
 TestCasesResults_GFM = load('TestCasesResults_GFM.mat');
 TestCasesResults_GFM = TestCasesResults_GFM.TestCaseResults;
+shape = 'o';
 
 %plot figure for varying fault resistance
 %Results_VaryingFaultResistance = TestCasesResults_GFM(1:4);
@@ -67,9 +70,9 @@ m = 0.5;
 SCR = 2.5;
 Results_VaryingFaultResistance = FindTestCases(TestCasesResults_GFM, Rf, m, SCR);
 
-FigNumber = 200;
+FigNumber = 100;
 for i = 1:length(Results_VaryingFaultResistance)
-    PlotDistanceElement(TL,Results_VaryingFaultResistance(i),FigNumber)
+    PlotDistanceElement(TL,Results_VaryingFaultResistance(i),FigNumber,shape)
 end
 figure(FigNumber)
 title('Distance Element With Varying Fault Resistance - GFM')
@@ -82,9 +85,9 @@ m = [];
 SCR = 2.5;
 Results_VaryingFaultDistance = FindTestCases(TestCasesResults_GFM, Rf, m, SCR);
 
-FigNumber = 201;
+FigNumber = 101;
 for i = 1:length(Results_VaryingFaultDistance)
-    PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber)
+    PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber,shape)
 end
 figure(FigNumber)
 title('Distance Element With Varying Fault Distance - GFM')
@@ -97,9 +100,9 @@ m = 0.5;
 SCR = [];
 Results_VaryingSCR = FindTestCases(TestCasesResults_GFM, Rf, m, SCR);
 
-FigNumber = 202;
+FigNumber = 102;
 for i = 1:length(Results_VaryingSCR)
-    PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber)
+    PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber,shape)
 end
 figure(FigNumber)
 title('Distance Element With Varying Grid SRC - GFM')
