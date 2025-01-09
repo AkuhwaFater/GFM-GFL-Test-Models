@@ -2,6 +2,7 @@
 % Parameters file for SPS model: HVDC_MMC.slx
 %
 %
+GFMGFLSelect = 0; %1 for GFM 0 for GFL
 Fnom= 50;                      % Nominal system frequency (Hz)
 Pnom= 1000e6;                  % Converter 3-phase rated power (MVA)
 Vnom_prim= 400e3;              % Nominal primary voltage (V)

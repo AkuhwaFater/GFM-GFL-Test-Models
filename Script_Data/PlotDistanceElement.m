@@ -26,7 +26,7 @@ function PlotDistanceElement(TL,Data,FigNumber,shape)
     figure(FigNumber);
     end
     
-    plot(Data.mZ1L_Est.Data(end),shape,'LineWidth',15,'DisplayName',['Rf=' num2str(Data.faultResistance) '$\Omega$; ' 'm=' num2str(Data.faultDistance) 'pu; ' 'SCR=' num2str(Data.SCR)]);
+    plot(Data.mZ1L_Est.Data(end),shape,'LineWidth',15,'DisplayName',['Rf=' num2str(Data.faultResistance) ' $\Omega$; ' 'm=' num2str(Data.faultDistance) ' pu; ' 'SCL=' num2str(Data.SCR/1e9) ' GVA']);
     legend('Interpreter','Latex');
     xlabel('Resistance (\Omega)','FontSize',13);
     ylabel('Reactance (\Omega)','FontSize',13);
