@@ -1,4 +1,4 @@
-function PlotDistanceElement(TL,Data,FigNumber,shape)
+function PlotDistanceElement(TL,Data,FigNumber,shape,size,resetColor)
         
     if ~ishandle(FigNumber)
     figure(FigNumber);
@@ -25,8 +25,13 @@ function PlotDistanceElement(TL,Data,FigNumber,shape)
     else 
     figure(FigNumber);
     end
+
+    if resetColor == 1
+        ax = gca;
+        ax.ColorOrderIndex = 1;
+    end
     
-    plot(Data.mZ1L_Est.Data(end),shape,'LineWidth',15,'DisplayName',['Rf=' num2str(Data.faultResistance) ' $\Omega$; ' 'm=' num2str(Data.faultDistance) ' pu; ' 'SCL=' num2str(Data.SCR/1e9) ' GVA']);
+    plot(Data.mZ1L_Est.Data(end),shape,'LineWidth',2,'MarkerSize',size);
     legend('Interpreter','Latex');
     xlabel('Resistance (\Omega)','FontSize',13);
     ylabel('Reactance (\Omega)','FontSize',13);
