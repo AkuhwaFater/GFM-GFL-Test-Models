@@ -156,17 +156,17 @@ ConvCtrl.Preg.Limits = [ 1.2, 0.8 ] ;   % Output (Vdc_ref) Upper/Lower limits (p
 % Reactive power regulator (Qreg)
 ConvCtrl.Qreg.Kp= 0.5/3;                % Proportional gain
 ConvCtrl.Qreg.Ki= 1.0;                  % Integral gain
-ConvCtrl.Qreg.Limits = [ 1.1, -1.1]; % Output (Iq_ref) Upper/Lower limit (pu)
+ConvCtrl.Qreg.Limits = [ 1.2, -1.2]; % Output (Iq_ref) Upper/Lower limit (pu)
 
 % VDC regulator (VDCreg)
 ConvCtrl.VDCreg.Kp =4;                   % Proportional gain
 ConvCtrl.VDCreg.Ki=100;                 % Integral gain
-ConvCtrl.VDCreg.Limits= [ 1.1  -1.1];   % Output Idref [Upper Lower] limits (pu)
+ConvCtrl.VDCreg.Limits= [ 1.2  -1.2];   % Output Idref [Upper Lower] limits (pu)
 
 % Current regulator (Ireg)
 ConvCtrl.Ireg.Kp = 0.6/2;                  % Proportional gain
 ConvCtrl.Ireg.Ki = 6/2;                    % Integral gain
-ConvCtrl.Ireg.Limits = [ 1.1  -1.1];     % Output Vdq_conv [Upper Lower] limits (pu)
+ConvCtrl.Ireg.Limits = [ 1.2  -1.2];     % Output Vdq_conv [Upper Lower] limits (pu)
 
 % Feedforward coefficients:
 ConvCtrl.FF.L = 0.0750;

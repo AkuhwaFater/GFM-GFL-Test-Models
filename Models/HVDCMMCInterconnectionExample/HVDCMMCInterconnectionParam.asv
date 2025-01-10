@@ -2,7 +2,7 @@
 % Parameters file for SPS model: HVDC_MMC.slx
 %
 %
-GFMGFLSelect = 1; %1 for GFM 0 for GFL
+GFMGFLSelect = 0; %1 for GFM 0 for GFL
 Fnom= 50;                      % Nominal system frequency (Hz)
 Pnom= 1000e6;                  % Converter 3-phase rated power (MVA)
 Vnom_prim= 400e3;              % Nominal primary voltage (V)
@@ -128,17 +128,17 @@ Limits_Preg = [ 1.2, 0.8 ] ;   % Output (Vdc_ref) Upper/Lower limits (pu)
 % Reactive power regulator (Qreg)
 Kp_Qreg= 0.5/3;                % Proportional gain
 Ki_Qreg= 1.0;                  % Integral gain
-Limits_Qreg = [ 1.2, -1.2 ]; % Output (Iq_ref) Upper/Lower limit (pu)
+Limits_Qreg = [ 0.25, -0.25 ]; % Output (Iq_ref) Upper/Lower limit (pu)
 %
 % VDC regulator (VDCreg)
 Kp_VDCreg=4;                   % Proportional gain
 Ki_VDCreg=100;                 % Integral gain
-Limits_VDCreg= [ 1.2  -1.2];   % Output Idref [Upper Lower] limits (pu)
+Limits_VDCreg= [ 2.0  -2.0];   % Output Idref [Upper Lower] limits (pu)
 %
 % Current regulator (Ireg)
 Kp_Ireg= 0.6;                  % Proportional gain
 Ki_Ireg= 6;                    % Integral gain
-Limits_Ireg= [ 1.2  -1.2];     % Output Vdq_conv [Upper Lower] limits (pu)
+Limits_Ireg= [ 2.0  -2.0];     % Output Vdq_conv [Upper Lower] limits (pu)
 % Feedforward coefficients:
 Lff=Larm_pu/2;
 Rff= Rarm_pu/2;
