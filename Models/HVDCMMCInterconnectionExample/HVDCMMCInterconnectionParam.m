@@ -97,6 +97,10 @@ gridInverter.controller.voltageMaxIq = 1.2; % Iq controller saturation maximum l
 gridInverter.controller.voltageMinIq = -1.2; % Iq controller saturation minimum limit
 gridInverter.controller.voltMeasTimeConst = 5e-3; % Voltage measurement low pass filter time constant
 
+%GFM Filter Inductor Design
+gridInverter.ratedrmsCurrent = gridInverter.apparentPower*1e3/(sqrt(3)*gridInverter.lineRMSVoltage); % A, Filter rated current
+gridInverter.L = (0.1*gridInverter.lineRMSVoltage/(gridInverter.ratedrmsCurrent*gridInverter.frequency*2*pi*sqrt(3))); % H, Filter inductance
+gridInverter.lineResistance = 0.1; % Ohm, Filter resistance
 %%
 % Sequencer timing:
 Tbrk1_On=0.1;                 % Closing time of breaker 1 (converter energizing)
