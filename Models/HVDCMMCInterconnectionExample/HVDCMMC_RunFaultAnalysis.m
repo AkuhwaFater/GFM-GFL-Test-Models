@@ -2,8 +2,8 @@
 mode = [0,1]; %1 for GFM 0 for GFL
 % Test Cases Parameters
 faultImpedanceArray = [0.001 1 5 10 15];%[0.05 0.1 0.25 0.4]; % Three phase fault impedance
-faultDistanceArray = [0.2 0.5 0.7];
-gridSCLArray = [5 20 40]*1e9; %GVA
+faultDistanceArray = [0.5];%[0.2 0.5 0.7];
+gridSCLArray = [20]*1e9;%[5 20 40]*1e9; %GVA
 
 %Run test cases
 % Defining simulink simulation input
@@ -87,53 +87,53 @@ legend(newlabels,'interpreter','latex');
 figure(FigNumber)
 title('Distance Element With Varying Fault Resistance')
 
-%plot figure for varying fault distance
-%Results_VaryingFaultDistance = TestCasesResults_GFL(1:4:12);
-
-Rf = 5;
-m = [];
-SCL = 20e9;
-Results_VaryingFaultDistance = FindTestCases(TestCasesResults_GFL, Rf, m, SCL);
-
-FigNumber = 101;
-resetColor = 1;
-clear Legend_VarRes
-for i = 1:length(Results_VaryingFaultDistance)
-    PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber,shape,size,resetColor)
-    m_val = Results_VaryingFaultDistance(i).faultDistance;
-    Legend_VarRes{i} = ['GFL - m = ' num2str(m_val) ' $pu$'];
-    resetColor = 0;
-end
-currentlabels = legend().String;
-newlabels = [currentlabels{1:end-i} Legend_VarRes];
-legend(newlabels,'interpreter','latex');
-
-figure(FigNumber)
-title('Distance Element With Varying Fault Distance')
-
-%plot figure for varying SCR
-%Results_VaryingSCR = TestCasesResults_GFL(1:12:36);
-
-Rf = 5;
-m = 0.5;
-SCL = [];
-Results_VaryingSCR = FindTestCases(TestCasesResults_GFL, Rf, m, SCL);
-
-FigNumber = 102;
-resetColor = 1;
-clear Legend_VarRes
-for i = 1:length(Results_VaryingSCR)
-    PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber,shape,size,resetColor)
-    SCL_val = Results_VaryingSCR(i).SCR;
-    Legend_VarRes{i} = ['GFL - SCL = ' num2str(SCL_val/1e9) ' $GVA$'];
-    resetColor = 0;
-end
-currentlabels = legend().String;
-newlabels = [currentlabels{1:end-i} Legend_VarRes];
-legend(newlabels,'interpreter','latex');
-
-figure(FigNumber)
-title('Distance Element With Varying Grid SCL')
+% %plot figure for varying fault distance
+% %Results_VaryingFaultDistance = TestCasesResults_GFL(1:4:12);
+% 
+% Rf = 5;
+% m = [];
+% SCL = 20e9;
+% Results_VaryingFaultDistance = FindTestCases(TestCasesResults_GFL, Rf, m, SCL);
+% 
+% FigNumber = 101;
+% resetColor = 1;
+% clear Legend_VarRes
+% for i = 1:length(Results_VaryingFaultDistance)
+%     PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber,shape,size,resetColor)
+%     m_val = Results_VaryingFaultDistance(i).faultDistance;
+%     Legend_VarRes{i} = ['GFL - m = ' num2str(m_val) ' $pu$'];
+%     resetColor = 0;
+% end
+% currentlabels = legend().String;
+% newlabels = [currentlabels{1:end-i} Legend_VarRes];
+% legend(newlabels,'interpreter','latex');
+% 
+% figure(FigNumber)
+% title('Distance Element With Varying Fault Distance')
+% 
+% %plot figure for varying SCR
+% %Results_VaryingSCR = TestCasesResults_GFL(1:12:36);
+% 
+% Rf = 5;
+% m = 0.5;
+% SCL = [];
+% Results_VaryingSCR = FindTestCases(TestCasesResults_GFL, Rf, m, SCL);
+% 
+% FigNumber = 102;
+% resetColor = 1;
+% clear Legend_VarRes
+% for i = 1:length(Results_VaryingSCR)
+%     PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber,shape,size,resetColor)
+%     SCL_val = Results_VaryingSCR(i).SCR;
+%     Legend_VarRes{i} = ['GFL - SCL = ' num2str(SCL_val/1e9) ' $GVA$'];
+%     resetColor = 0;
+% end
+% currentlabels = legend().String;
+% newlabels = [currentlabels{1:end-i} Legend_VarRes];
+% legend(newlabels,'interpreter','latex');
+% 
+% figure(FigNumber)
+% title('Distance Element With Varying Grid SCL')
 
 %% Plot Results for GFM
 TestCasesResults_GFM = load('HVDCMMC_TestCasesResults_GFM.mat');
@@ -164,53 +164,53 @@ legend(newlabels,'interpreter','latex');
 figure(FigNumber)
 title('Distance Element With Varying Fault Resistance')
 
-%plot figure for varying fault distance
-%Results_VaryingFaultDistance = TestCasesResults_GFM(1:4:12);
-
-Rf = 5;
-m = [];
-SCL = 20e9;
-Results_VaryingFaultDistance = FindTestCases(TestCasesResults_GFM, Rf, m, SCL);
-
-FigNumber = 101;
-resetColor = 1;
-clear Legend_VarRes;
-for i = 1:length(Results_VaryingFaultDistance)
-    PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber,shape,size,resetColor)
-    m_val = Results_VaryingFaultDistance(i).faultDistance;
-    Legend_VarRes{i} = ['GFM - m = ' num2str(m_val) ' $pu$'];
-    resetColor = 0;
-end
-currentlabels = legend().String;
-newlabels = [currentlabels{1:end-i} Legend_VarRes];
-legend(newlabels,'interpreter','latex');
-
-figure(FigNumber)
-title('Distance Element With Varying Fault Distance')
-
-%plot figure for varying SCR
-%Results_VaryingSCR = TestCasesResults_GFM(1:12:36);
-
-Rf = 5;
-m = 0.5;
-SCL = [];
-Results_VaryingSCR = FindTestCases(TestCasesResults_GFM, Rf, m, SCL);
-
-FigNumber = 102;
-resetColor = 1;
-clear Legend_VarRes;
-for i = 1:length(Results_VaryingSCR)
-    PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber,shape,size,resetColor)
-    SCL_val = Results_VaryingSCR(i).SCR;
-    Legend_VarRes{i} = ['GFM - SCL = ' num2str(SCL_val/1e9) ' $GVA$'];
-    resetColor = 0;
-end
-currentlabels = legend().String;
-newlabels = [currentlabels{1:end-i} Legend_VarRes];
-legend(newlabels,'interpreter','latex');
-
-figure(FigNumber)
-title('Distance Element With Varying Grid SCL')
+% %plot figure for varying fault distance
+% %Results_VaryingFaultDistance = TestCasesResults_GFM(1:4:12);
+% 
+% Rf = 5;
+% m = [];
+% SCL = 20e9;
+% Results_VaryingFaultDistance = FindTestCases(TestCasesResults_GFM, Rf, m, SCL);
+% 
+% FigNumber = 101;
+% resetColor = 1;
+% clear Legend_VarRes;
+% for i = 1:length(Results_VaryingFaultDistance)
+%     PlotDistanceElement(TL,Results_VaryingFaultDistance(i),FigNumber,shape,size,resetColor)
+%     m_val = Results_VaryingFaultDistance(i).faultDistance;
+%     Legend_VarRes{i} = ['GFM - m = ' num2str(m_val) ' $pu$'];
+%     resetColor = 0;
+% end
+% currentlabels = legend().String;
+% newlabels = [currentlabels{1:end-i} Legend_VarRes];
+% legend(newlabels,'interpreter','latex');
+% 
+% figure(FigNumber)
+% title('Distance Element With Varying Fault Distance')
+% 
+% %plot figure for varying SCR
+% %Results_VaryingSCR = TestCasesResults_GFM(1:12:36);
+% 
+% Rf = 5;
+% m = 0.5;
+% SCL = [];
+% Results_VaryingSCR = FindTestCases(TestCasesResults_GFM, Rf, m, SCL);
+% 
+% FigNumber = 102;
+% resetColor = 1;
+% clear Legend_VarRes;
+% for i = 1:length(Results_VaryingSCR)
+%     PlotDistanceElement(TL,Results_VaryingSCR(i),FigNumber,shape,size,resetColor)
+%     SCL_val = Results_VaryingSCR(i).SCR;
+%     Legend_VarRes{i} = ['GFM - SCL = ' num2str(SCL_val/1e9) ' $GVA$'];
+%     resetColor = 0;
+% end
+% currentlabels = legend().String;
+% newlabels = [currentlabels{1:end-i} Legend_VarRes];
+% legend(newlabels,'interpreter','latex');
+% 
+% figure(FigNumber)
+% title('Distance Element With Varying Grid SCL')
 
 %% Function
 function Results = FindTestCases(TestCases, Rf, m, SCR)
