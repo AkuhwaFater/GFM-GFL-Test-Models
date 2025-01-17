@@ -88,7 +88,7 @@ TL.K0 = (TL.Z0-TL.Z1)/TL.Z1; %residual compensation factor
 Fault.Type = 'ABC-G'; %Options are {'No fault'  'A-G'  'AB'  'AB-G'  'ABC'  'ABC-G'}
 Fault.m = 0.5; %pu length
 Fault.R = 1; %ohm
-Fault.StartTime = 9;%2.505; %Fault injection simulation time in s
+Fault.StartTime = 10;%2.505; %Fault injection simulation time in s
 Fault.EndTime = 12.6; %Fault removal simulation time in s
 
 %set_param(FltProgBlock,'FaultType',Fault.Type); %Update the fault programming block in the model to use the selected fault type
