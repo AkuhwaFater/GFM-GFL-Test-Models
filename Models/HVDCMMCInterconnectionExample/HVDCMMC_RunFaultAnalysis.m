@@ -1,5 +1,5 @@
 % Select the operating scenarios
-mode = [0,1]; %1 for GFM 0 for GFL
+mode = [0 1]; %1 for GFM 0 for GFL
 % Test Cases Parameters
 faultImpedanceArray = [0.001 1 5 10 15];%[0.05 0.1 0.25 0.4]; % Three phase fault impedance
 faultDistanceArray = [0.2 0.5 0.7];
@@ -36,6 +36,15 @@ for GFMGFLSelect = mode
                 TestCaseResults(resIdx).I1_Local = outData.I1_Local;
                 TestCaseResults(resIdx).V1_Remote = outData.V1_Remote;
                 TestCaseResults(resIdx).I1_Remote = outData.I1_Remote;
+                TestCaseResults(resIdx).IdRef = outData.IdRef;
+                TestCaseResults(resIdx).IqRef = outData.IqRef;
+                TestCaseResults(resIdx).IdMeas = outData.IdMeas;
+                TestCaseResults(resIdx).IqMeas = outData.IqMeas;
+                TestCaseResults(resIdx).Is = outData.Is;
+                TestCaseResults(resIdx).Vmd = outData.Vmd;
+                TestCaseResults(resIdx).Vmq = outData.Vmq;
+                TestCaseResults(resIdx).delVd = outData.delVd;
+                TestCaseResults(resIdx).delVq = outData.delVq;
                 TestCaseResults(resIdx).faultResistance = Fault.R;
                 TestCaseResults(resIdx).faultDistance = Fault.m;
                 TestCaseResults(resIdx).SCR = Psc;
@@ -63,7 +72,7 @@ toc
 TestCasesResults_GFL = load('HVDCMMC_TestCasesResults_GFL.mat');
 TestCasesResults_GFL = TestCasesResults_GFL.TestCaseResults;
 shape = 'x';
-size = 13;
+markerSize = 13;
 
 %plot figure for varying fault resistance
 %Results_VaryingFaultResistance_GFL = TestCasesResults_GFL(1:4);
@@ -75,7 +84,7 @@ Results_VaryingFaultResistance_GFL = FindTestCases(TestCasesResults_GFL, Rf, m, 
 FigNumber = 100;
 resetColor = 1;
 for i = 1:length(Results_VaryingFaultResistance_GFL)
-    PlotDistanceElement(TL,Results_VaryingFaultResistance_GFL(i),FigNumber,shape,size,resetColor)
+    PlotDistanceElement(TL,Results_VaryingFaultResistance_GFL(i),FigNumber,shape,markerSize,resetColor,plotTime)
     Rf_val = Results_VaryingFaultResistance_GFL(i).faultResistance;
     Legend_VarRes{i} = ['GFL - Rf = ' num2str(Rf_val) ' $\Omega$'];
     resetColor = 0;
@@ -99,7 +108,7 @@ FigNumber = 101;
 resetColor = 1;
 clear Legend_VarRes
 for i = 1:length(Results_VaryingFaultDistance_GFL)
-    PlotDistanceElement(TL,Results_VaryingFaultDistance_GFL(i),FigNumber,shape,size,resetColor)
+    PlotDistanceElement(TL,Results_VaryingFaultDistance_GFL(i),FigNumber,shape,markerSize,resetColor,plotTime)
     m_val = Results_VaryingFaultDistance_GFL(i).faultDistance;
     Legend_VarRes{i} = ['GFL - m = ' num2str(m_val) ' $pu$'];
     resetColor = 0;
@@ -123,7 +132,7 @@ FigNumber = 102;
 resetColor = 1;
 clear Legend_VarRes
 for i = 1:length(Results_VaryingSCR_GFL)
-    PlotDistanceElement(TL,Results_VaryingSCR_GFL(i),FigNumber,shape,size,resetColor)
+    PlotDistanceElement(TL,Results_VaryingSCR_GFL(i),FigNumber,shape,markerSize,resetColor,plotTime)
     SCL_val = Results_VaryingSCR_GFL(i).SCR;
     Legend_VarRes{i} = ['GFL - SCL = ' num2str(SCL_val/1e9) ' $GVA$'];
     resetColor = 0;
@@ -139,7 +148,8 @@ title('Distance Element With Varying Grid SCL')
 TestCasesResults_GFM = load('HVDCMMC_TestCasesResults_GFM.mat');
 TestCasesResults_GFM = TestCasesResults_GFM.TestCaseResults;
 shape = 'o';
-size = 10;
+markerSize = 10;
+plotTime = 10.1;
 
 %plot figure for varying fault resistance
 %Results_VaryingFaultResistance_GFM = TestCasesResults_GFM(1:4);
@@ -152,7 +162,7 @@ FigNumber = 100;
 resetColor = 1;
 clear Legend_VarRes;
 for i = 1:length(Results_VaryingFaultResistance_GFM)
-    PlotDistanceElement(TL,Results_VaryingFaultResistance_GFM(i),FigNumber,shape,size,resetColor)
+    PlotDistanceElement(TL,Results_VaryingFaultResistance_GFM(i),FigNumber,shape,markerSize,resetColor,plotTime)
     Rf_val = Results_VaryingFaultResistance_GFM(i).faultResistance;
     Legend_VarRes{i} = ['GFM - Rf = ' num2str(Rf_val) ' $\Omega$'];
     resetColor = 0;
@@ -176,7 +186,7 @@ FigNumber = 101;
 resetColor = 1;
 clear Legend_VarRes;
 for i = 1:length(Results_VaryingFaultDistance_GFM)
-    PlotDistanceElement(TL,Results_VaryingFaultDistance_GFM(i),FigNumber,shape,size,resetColor)
+    PlotDistanceElement(TL,Results_VaryingFaultDistance_GFM(i),FigNumber,shape,markerSize,resetColor,plotTime)
     m_val = Results_VaryingFaultDistance_GFM(i).faultDistance;
     Legend_VarRes{i} = ['GFM - m = ' num2str(m_val) ' $pu$'];
     resetColor = 0;
@@ -200,7 +210,7 @@ FigNumber = 102;
 resetColor = 1;
 clear Legend_VarRes;
 for i = 1:length(Results_VaryingSCR_GFM)
-    PlotDistanceElement(TL,Results_VaryingSCR_GFM(i),FigNumber,shape,size,resetColor)
+    PlotDistanceElement(TL,Results_VaryingSCR_GFM(i),FigNumber,shape,markerSize,resetColor,plotTime)
     SCL_val = Results_VaryingSCR_GFM(i).SCR;
     Legend_VarRes{i} = ['GFM - SCL = ' num2str(SCL_val/1e9) ' $GVA$'];
     resetColor = 0;
@@ -211,6 +221,103 @@ legend(newlabels,'interpreter','latex');
 
 figure(FigNumber)
 title('Distance Element With Varying Grid SCL')
+
+%% Plot Idq Ref vs Meas + Is GFL
+TestCasesResults_GFL = load('HVDCMMC_TestCasesResults_GFL.mat');
+TestCasesResults_GFL = TestCasesResults_GFL.TestCaseResults;
+
+%plot figure for 1 ohm 0.5 distance and 20e9 SCL
+Rf = 0.001;
+m = 0.5;
+SCL = 20e9;
+Results_BaseCase_GFL = FindTestCases(TestCasesResults_GFL, Rf, m, SCL);
+Time = Results_BaseCase_GFL.IdRef.Time -Results_BaseCase_GFL.IdRef.Time(1); 
+figure()
+subplot(1,2,1)
+plot(Time,Results_BaseCase_GFL.IdRef.Data,'--k','DisplayName','Id ref','LineWidth',2)
+grid on
+hold on
+plot(Time,Results_BaseCase_GFL.IdMeas.Data,'r','DisplayName','Id meas','LineWidth',2)
+plot(Time,Results_BaseCase_GFL.IqRef.Data,'--k','DisplayName','Iq ref','LineWidth',2)
+plot(Time,Results_BaseCase_GFL.IqMeas.Data,'g','DisplayName','Iq meas','LineWidth',2)
+hold off
+legend
+
+subplot(1,2,2)
+plot(Time,1.2*ones(size(Results_BaseCase_GFL.Is.Time)),'--k','DisplayName','I max','LineWidth',2)
+grid on
+hold on
+plot(Time,Results_BaseCase_GFL.Is.Data,'r','DisplayName','Is','LineWidth',2)
+legend
+
+figure()
+subplot(1,2,1)
+plot(Time,Results_BaseCase_GFL.Vmd.Data,'r','DisplayName','Vmd','LineWidth',2)
+grid on
+hold on
+plot(Time,Results_BaseCase_GFL.delVd.Data,'g','DisplayName','delVd','LineWidth',2)
+legend
+
+subplot(1,2,2)
+plot(Time,Results_BaseCase_GFL.Vmq.Data,'r','DisplayName','Vmq','LineWidth',2)
+grid on
+hold on
+plot(Time,Results_BaseCase_GFL.delVq.Data,'g','DisplayName','delVq','LineWidth',2)
+legend
+
+Time = Results_BaseCase_GFL.V1_Local.Time - Results_BaseCase_GFL.V1_Local.Time(1);
+figure()
+plot(Time,rad2deg(angle(Results_BaseCase_GFL.V1_Local.Data)),'r','DisplayName','\angle V','LineWidth',2)
+grid on
+legend
+
+%% Plot Idq Ref vs Meas + Is GFM
+TestCasesResults_GFM = load('HVDCMMC_TestCasesResults_GFM.mat');
+TestCasesResults_GFM = TestCasesResults_GFM.TestCaseResults;
+
+%plot figure for 1 ohm 0.5 distance and 20e9 SCL
+Rf = 1;
+m = 0.5;
+SCL = 20e9;
+Results_BaseCase_GFM = FindTestCases(TestCasesResults_GFM, Rf, m, SCL);
+Time = Results_BaseCase_GFM.IdRef.Time -Results_BaseCase_GFM.IdRef.Time(1); 
+subplot(1,2,1)
+plot(Time,Results_BaseCase_GFM.IdRef.Data,'--k','DisplayName','Id ref','LineWidth',2)
+grid on
+hold on
+plot(Time,Results_BaseCase_GFM.IdMeas.Data,'r','DisplayName','Id meas','LineWidth',2)
+plot(Time,Results_BaseCase_GFM.IqRef.Data,'--k','DisplayName','Iq ref','LineWidth',2)
+plot(Time,Results_BaseCase_GFM.IqMeas.Data,'g','DisplayName','Iq meas','LineWidth',2)
+hold off
+legend
+
+subplot(1,2,2)
+plot(Time,1.2*ones(size(Results_BaseCase_GFM.Is.Time)),'--k','DisplayName','I max','LineWidth',2)
+grid on
+hold on
+plot(Time,Results_BaseCase_GFM.Is.Data,'r','DisplayName','Is','LineWidth',2)
+legend
+
+figure()
+subplot(1,2,1)
+plot(Time,Results_BaseCase_GFM.Vmd.Data,'r','DisplayName','Vmd','LineWidth',2)
+grid on
+hold on
+plot(Time,Results_BaseCase_GFM.delVd.Data,'g','DisplayName','delVd','LineWidth',2)
+legend
+
+subplot(1,2,2)
+plot(Time,Results_BaseCase_GFM.Vmq.Data,'r','DisplayName','Vmq','LineWidth',2)
+grid on
+hold on
+plot(Time,Results_BaseCase_GFM.delVq.Data,'g','DisplayName','delVq','LineWidth',2)
+legend
+
+Time = Results_BaseCase_GFM.V1_Local.Time - Results_BaseCase_GFM.V1_Local.Time(1);
+figure()
+plot(Time,rad2deg(angle(Results_BaseCase_GFM.V1_Local.Data)),'r','DisplayName','\angle V','LineWidth',2)
+grid on
+legend
 
 %% Function
 function Results = FindTestCases(TestCases, Rf, m, SCR)
